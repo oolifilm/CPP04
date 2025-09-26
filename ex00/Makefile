@@ -1,0 +1,66 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: leanne <leanne@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/03 05:35:45 by leaugust          #+#    #+#              #
+#    Updated: 2025/09/26 18:10:00 by leanne           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = Animal
+CXX	 = c++
+CFLAGS = -Wall -Werror -Wextra -std=c++98
+
+SRC_DIR =
+OBJ_DIR = obj/
+INC_DIR = include/
+
+RESET		= \033[0m
+PURPLE		= \033[38;5;083m
+PINK		= \033[38;5;208m
+BLUE		= \033[38;5;053m
+UP			= \033[A
+CUT			= \033[K
+
+SRC_FILES = main.cpp Animal.cpp Dog.cpp Cat.cpp
+OBJ_FILES = $(SRC_FILES:.cpp=.o)
+
+SRC_PATH = $(addprefix $(SRC_DIR), $(SRC_FILES))
+OBJ_PATH = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
+
+all: $(NAME)
+	@printf "$(BLUE)Welcome to EX00 of CPP04\n$(RESET)"
+
+$(NAME): $(OBJ_PATH)
+	@echo "$(PURPLE)Compiling [$(NAME)]...$(RESET)"
+	@$(CXX) $(CFLAGS) $(OBJ_PATH) -o $(NAME)
+	@echo "$(PINK)Finished [$(NAME)]$(RESET)"
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.cpp
+	@mkdir -p $(OBJ_DIR)
+	@echo "$(PURPLE)Compiling [$@]...$(RESET)"
+	@$(CXX) $(CFLAGS) -I $(INC_DIR) -o $@ -c $<
+	@printf "$(UP)$(CUT)"
+	@echo "$(PINK)Finished [$@]$(RESET)"
+	@printf "$(UP)$(CUT)"
+
+clean:
+	@if [ -d "$(OBJ_DIR)" ]; then \
+	rm -rf $(OBJ_DIR); \
+	echo "$(BLUE)Deleting all objects from /ex00...$(RESET)"; else \
+	echo "No objects to remove from /ex00."; \
+	fi;
+
+fclean: clean
+	@if [ -f "$(NAME)" ]; then \
+	rm -f $(NAME); \
+	echo "$(BLUE)Deleting $(NAME) from ex00...$(RESET)"; else \
+	echo "No Executable to remove from ex00."; \
+	fi;
+
+re: fclean all
+
+.PHONY: all clean fclean re
