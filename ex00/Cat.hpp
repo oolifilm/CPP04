@@ -6,7 +6,7 @@
 /*   By: leaugust <leaugust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 19:09:52 by leaugust          #+#    #+#             */
-/*   Updated: 2025/09/26 19:11:10 by leaugust         ###   ########.fr       */
+/*   Updated: 2025/09/26 20:55:40 by leaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Cat : public Animal {
         Cat(const Cat &other);
         Cat& operator=(const Cat &other);
         virtual ~Cat();
+        void makeSound() const;
 };
 
 #endif

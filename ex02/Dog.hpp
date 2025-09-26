@@ -6,22 +6,26 @@
 /*   By: leaugust <leaugust@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 19:10:57 by leaugust          #+#    #+#             */
-/*   Updated: 2025/09/26 20:51:27 by leaugust         ###   ########.fr       */
+/*   Updated: 2025/09/26 22:14:04 by leaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
 #define DOG_HPP
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
+#include "Brain.hpp"
 
-class Dog : public Animal {
+class Dog : public AAnimal {
+    private:
+        Brain* brain;
     public:
         Dog();
         Dog(const Dog &other);
         Dog& operator=(const Dog &other);
         virtual ~Dog();
         void makeSound() const;
+        Brain* getBrain() const;
 };
 
 #endif
